@@ -1,4 +1,4 @@
-name: Talend CI Test
+name: Talend Deploy Simulation
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  executar-job:
+  deploy-homolog:
 
     runs-on: ubuntu-latest
 
@@ -16,5 +16,11 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      - name: Listar arquivos
-        run: ls -R
+      - name: Criar ambiente homolog
+        run: mkdir homolog
+
+      - name: Copiar artefato para homolog
+        run: cp GerarDados_0.1.zip homolog/
+
+      - name: Verificar deploy
+        run: ls -R homolog
